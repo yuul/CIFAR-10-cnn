@@ -7,7 +7,7 @@ print("Tensorflow Imported")
 import keras
 print("Keras Imported")
 from keras.models import Sequential
-from keras.layers import Dense, Dropout, Flatten
+from keras.layers import Dense, Dropout, Flatten, BatchNormalization
 from keras.layers import Conv2D, MaxPooling2D
 import keras.callbacks as cb
 from matplotlib import pyplot as plt
@@ -104,37 +104,59 @@ def init_model():
     model = Sequential()
     
     # block 1
-    model.add(Conv2D(64, (3,3), activation='relu', padding='same', kernel_initializer='he_normal', input_shape=(32,32,3)))
+    model.add(Conv2D(64, (3,3), activation='relu', padding='same', kernel_initializer='he_normal', input_shape=(img_size, img_size, num_channels)))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.3))
     model.add(Conv2D(64, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(BatchNormalization())
     model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
     
     # block 2
     model.add(Conv2D(128, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.4))
     model.add(Conv2D(128, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(BatchNormalization())
     model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
     
     # block 3
     model.add(Conv2D(256, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.4))
     model.add(Conv2D(256, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.4))
     model.add(Conv2D(256, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(BatchNormalization())
     model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
 
     # block 4
     model.add(Conv2D(512, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.4))
     model.add(Conv2D(512, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.4))
     model.add(Conv2D(512, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(BatchNormalization())
     model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
 
     # block 5
     model.add(Conv2D(512, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.4))
     model.add(Conv2D(512, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.4))
     model.add(Conv2D(512, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(BatchNormalization())
+        
     model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
     
     model.add(Flatten())
-    model.add(Dense(4096, activation='relu', kernel_initializer='he_normal'))
+    model.add(Dense(512, activation='relu', kernel_initializer='he_normal'))
     model.add(Dropout(0.5))
-    model.add(Dense(4096, activation='relu', kernel_initializer='he_normal'))
+    model.add(Dense(512, activation='relu', kernel_initializer='he_normal'))
     model.add(Dropout(0.5))
     model.add(Dense(num_class, activation='softmax', kernel_initializer='he_normal'))
     
@@ -173,7 +195,7 @@ print("Model compiled, training beginning")
 
 # train!!!
 model.fit(train_images, train_class, epochs=20, batch_size=64, callbacks=[history], 
-    validation_data=(test_images, test_class), verbose=2)
+    validation_data=(test_images, test_class), verbose=1)
 print("Training over, evaluation beginning")
 score = model.evaluate(test_images, test_class, batch_size=16)
 
