@@ -1,12 +1,19 @@
+print("Starting imports")
 import pickle
-import keras
 import numpy as np
+print("Numpy Imported")
+import tensorflow as tf
+print("Tensorflow Imported")
+import keras
+print("Keras Imported")
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 import keras.callbacks as cb
 from matplotlib import pyplot as plt
+print("All packages imoported")
 
+# this sets some constants to use
 img_size = 32
 num_channels = 3
 num_class = 10
@@ -90,10 +97,86 @@ def training_loader():
 
     return images, cls
 
+# this is the model I will be using
+def init_model():
+    
+    ### This code is for my VGG-16 architecture
+    model = Sequential()
+    
+    # block 1
+    model.add(Conv2D(64, (3,3), activation='relu', padding='same', kernel_initializer='he_normal', input_shape=(32,32,3)))
+    model.add(Conv2D(64, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
+    
+    # block 2
+    model.add(Conv2D(128, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(Conv2D(128, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
+    
+    # block 3
+    model.add(Conv2D(256, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(Conv2D(256, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(Conv2D(256, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
+
+    # block 4
+    model.add(Conv2D(512, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(Conv2D(512, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(Conv2D(512, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
+
+    # block 5
+    model.add(Conv2D(512, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(Conv2D(512, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(Conv2D(512, (3,3), activation='relu', padding='same', kernel_initializer='he_normal'))
+    model.add(MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
+    
+    model.add(Flatten())
+    model.add(Dense(4096, activation='relu', kernel_initializer='he_normal'))
+    model.add(Dropout(0.5))
+    model.add(Dense(4096, activation='relu', kernel_initializer='he_normal'))
+    model.add(Dropout(0.5))
+    model.add(Dense(num_class, activation='softmax', kernel_initializer='he_normal'))
+    
+    model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
+    return model
+
+# not quite sure how this works but understand that it records the history
+class LossHistory(cb.Callback):
+    def on_train_begin(self, logs={}):
+        self.losses = []
+
+    def on_batch_end(self, batch, logs={}):
+        batch_loss = logs.get('loss')
+        self.losses.append(batch_loss)
+
+# plots stuff
+def plot_losses(losses):
+        plt.plot(losses)
+        plt.title('Loss per batch')
+        plt.show()
+
+# this loads all of the data into train_images, train_class, test_images, test_class
 train_images, train_class = training_loader()
 test_images, test_class = load_data("cifar-10-batches-py/test_batch")
-print(train_images.shape)
-print(train_class.shape)
-print(test_images.shape)
-print(test_class.shape)
+print("Data done loading and processing")
 
+# create loss history
+history = LossHistory()
+print("History list created")
+# loads data into minibatches
+#(X_train_mini_batch, y_train_mini_batch) = mini_batch(X_train, Y_train, 10000, 0)
+#(X_test_mini_batch, y_test_mini_batch) = mini_batch(X_test, Y_test, 5000, 0)
+
+model = init_model()
+print("Model compiled, training beginning")
+
+# train!!!
+model.fit(train_images, train_class, epochs=20, batch_size=64, callbacks=[history], 
+    validation_data=(test_images, test_class), verbose=2)
+print("Training over, evaluation beginning")
+score = model.evaluate(test_images, test_class, batch_size=16)
+
+model.save('model_try1.h5')
+print(score)
+plot_losses(history.losses)
