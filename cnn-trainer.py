@@ -20,57 +20,20 @@ print("Data done loading and processing")
 # create loss history
 history = utils.LossHistory()
 print("History list created")
-# loads data into minibatches
-#(X_train_mini_batch, y_train_mini_batch) = mini_batch(X_train, Y_train, 10000, 0)
-#(X_test_mini_batch, y_test_mini_batch) = mini_batch(X_test, Y_test, 5000, 0)
 
-model = models.model3()
+# load the model
+model = models.model4()
 print("Model compiled, training beginning")
 
 # train!!!
 start_time = time.time()
 model.fit(train_images, train_class, epochs=2, batch_size=256, callbacks=[history], 
     validation_data=(test_images, test_class), verbose=1)
-print("--- %s seconds ---" % (time.time() - start_time))    
-print("Training over, evaluation beginning")
+print("--- %s seconds ---" % (time.time() - start_time))  
+model.save('model_try3.h5')
+  
+print("\nTraining over, evaluation beginning")
 score = model.evaluate(test_images, test_class)
 
-# model.save('model_try2.h5')
 print(score)
 utils.plot_losses(history.losses)
-
-print("Now testing on the complex model")
-# now repeat for a second model
-history2 = utils.LossHistory()
-print("History List created")
-
-model2 = models.model4()
-print("Model compiled, training beginning")
-# train!!!
-start_time2 = time.time()
-model2.fit(train_images, train_class, epochs=10, batch_size=256, callbacks=[history], 
-    validation_data=(test_images, test_class), verbose=1)
-print("--- %s seconds ---" % (time.time() - start_time2))
-print("Training over, evaluation beginning")
-score2 = model2.evaluate(test_images, test_class)
-
-print(score2)
-utils.plot_losses(history2.losses)
-
-print("Now testing on the simplest model")
-# now repeat for a third model
-history3 = utils.LossHistory()
-print("History List created")
-
-model3 = models.simplest_model()
-print("Model compiled, training beginning")
-# train!!!
-start_time3 = time.time()
-model3.fit(train_images, train_class, epochs=10, batch_size=256, callbacks=[history], 
-    validation_data=(test_images, test_class), verbose=1)
-print("--- %s seconds ---" % (time.time() - start_time3))
-print("Training over, evaluation beginning")
-score3 = model3.evaluate(test_images, test_class)
-
-print(score3)
-utils.plot_losses(history3.losses)

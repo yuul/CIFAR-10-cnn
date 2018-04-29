@@ -2,39 +2,43 @@ Test Results
 
 First test:
 2 Epochs, BS 64, ADAM
-Loss .9687, Acc: 55.87, Val_Loss = .8525, Val_Acc = 59.88
+Loss .9687, Acc: 55.87, Val_Loss = .8525, Val_Acc = 59.88 Time: 625
 
 Second Test:
 10 Epochs, BS 256, ADAM
-Loss .5654, Acc: 70.63, Val_Loss = .5762, Val_Acc = 69.99
+Loss .5654, Acc: 70.63, Val_Loss = .5762, Val_Acc = 69.99 Time: 2848
 
 Third Test:
 2 Epochs, BS 256, ADAM
 added layer (model2)
-Loss: 1.1278 Acc: 49.9 Val_Loss: 1.0013 Val_Acc: 53.96
+Loss: 1.1278 Acc: 49.9 Val_Loss: 1.0013 Val_Acc: 53.96 Time: 645
 
 Fourth Test:
 2 Epochs, BS 256, RMSProp (w/ default values)
-Loss: 1.2688 Acc:44.94  Val_Loss: 1.1364 Val_Acc: 49.99
+Loss: 1.2688 Acc:44.94  Val_Loss: 1.1364 Val_Acc: 49.99 Time: 565
 
 Fifth Test:
 2 Epochs, BS 256, RMSProp
 change all of the dropout to .5 (model3)
-Loss: Acc: Val_Loss: Val_Acc:
+Loss: 1.3508 Acc: 41.86 Val_Loss: 1.3153 Val_Acc: 43.01 Time: 566s
 
 Sixth Test:
 2 Epochs, BS 256, ADAM
 change all of the dropout to .5 (model3)
-Loss: Acc: Val_Loss: Val_Acc:
+Loss: 1.1725 Acc: 48 Val_Loss: 1.10193 Val_Acc: 53.58 Time: 574
 
 Seventh Test:
 10 Epochs, BS 256, ADAM
 use 2 added convolutional layers (model4)
 dropout .5
-Loss: Acc: Val_Loss: Val_Acc:
+Loss: Acc: Val_Loss: Val_Acc: Time:
 
-Eigth Test:
+Eighth Test:
 10 Epochs, BS 256, ADAM
 removed two convolutional layers (simplestModel)
-dropout .5
-Loss: Acc: Val_Loss: Val_Acc:
+Loss: Acc: Val_Loss: Val_Acc: Time:
+
+Ninth Test:
+10 Epochs, VS 256, ADAM
+normal dropout, deep net (model4)
+Loss: Acc: Val_Loss: Val_Acc: Time:
