@@ -41,4 +41,4 @@ Loss: 1.0374 Acc: .5367 Val_Loss: .9112 Val_Acc: .5287 Time: 630
 Ninth Test:
 10 Epochs, BS 256, ADAM
 normal dropout, deep net (model4)
-Loss: Acc: Val_Loss: Val_Acc: Time:
+Loss: .6070 Acc: 69.1 Val_Loss: .5756 Val_Acc: 70.41 Time:3466
