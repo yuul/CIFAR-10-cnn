@@ -1,0 +1,8 @@
+Test Results
+
+First test:
+2 Epochs, BS 64, ADAM
+Loss .9687, Acc: 55.87, Val_Loss = .8525, Val_Acc = 59.88
+
+Second Test:
+10 Epochs, BS 256, ADAM

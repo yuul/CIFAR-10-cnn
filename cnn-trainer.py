@@ -27,12 +27,12 @@ model = models.simpler_model()
 print("Model compiled, training beginning")
 
 # train!!!
-model.fit(train_images, train_class, epochs=2, batch_size=64, callbacks=[history], 
+model.fit(train_images, train_class, epochs=10, batch_size=256, callbacks=[history], 
     validation_data=(test_images, test_class), verbose=1)
 print("Training over, evaluation beginning")
-score = model.evaluate(test_images, test_class, batch_size=64)
+score = model.evaluate(test_images, test_class)
 
-model.save('model_try2.h5')
+# model.save('model_try2.h5')
 print(score)
 
 utils.plot_losses(history.losses)
