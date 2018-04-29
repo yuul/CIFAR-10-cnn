@@ -27,11 +27,11 @@ print("Model compiled, training beginning")
 
 # train!!!
 start_time = time.time()
-model.fit(train_images, train_class, epochs=2, batch_size=256, callbacks=[history], 
+model.fit(train_images, train_class, epochs=10, batch_size=256, callbacks=[history], 
     validation_data=(test_images, test_class), verbose=1)
 print("--- %s seconds ---" % (time.time() - start_time))  
 model.save('model_try3.h5')
-  
+
 print("\nTraining over, evaluation beginning")
 score = model.evaluate(test_images, test_class)
 

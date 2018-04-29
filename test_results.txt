@@ -31,14 +31,14 @@ Seventh Test:
 10 Epochs, BS 256, ADAM
 use 2 added convolutional layers (model4)
 dropout .5
-Loss: Acc: Val_Loss: Val_Acc: Time:
+Loss: .7773 Acc: 63.14 Val_Loss: .7399 Val_Acc: 64.53 Time: 3255
 
 Eighth Test:
-10 Epochs, BS 256, ADAM
+2 Epochs, BS 256, ADAM
 removed two convolutional layers (simplestModel)
-Loss: Acc: Val_Loss: Val_Acc: Time:
+Loss: 1.0374 Acc: .5367 Val_Loss: .9112 Val_Acc: .5287 Time: 630
 
 Ninth Test:
-10 Epochs, VS 256, ADAM
+10 Epochs, BS 256, ADAM
 normal dropout, deep net (model4)
 Loss: Acc: Val_Loss: Val_Acc: Time:
