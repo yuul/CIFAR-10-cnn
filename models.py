@@ -93,7 +93,7 @@ def simpler_model():
     model.add(Dense(num_class, activation='softmax'))
 
     # Trains the model with ADAM
-    model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
+    model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.RMSprop(), metrics=['accuracy'])
     return model
 
 def model2():
