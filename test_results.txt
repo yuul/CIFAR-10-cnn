@@ -18,9 +18,23 @@ Fourth Test:
 Loss: 1.2688 Acc:44.94  Val_Loss: 1.1364 Val_Acc: 49.99
 
 Fifth Test:
-2 Epochs, BS 256, ADAM
-change all of the dropout to .5 (model 3)
+2 Epochs, BS 256, RMSProp
+change all of the dropout to .5 (model3)
 Loss: Acc: Val_Loss: Val_Acc:
 
 Sixth Test:
 2 Epochs, BS 256, ADAM
+change all of the dropout to .5 (model3)
+Loss: Acc: Val_Loss: Val_Acc:
+
+Seventh Test:
+10 Epochs, BS 256, ADAM
+use 2 added convolutional layers (model4)
+dropout .5
+Loss: Acc: Val_Loss: Val_Acc:
+
+Eigth Test:
+10 Epochs, BS 256, ADAM
+removed two convolutional layers (simplestModel)
+dropout .5
+Loss: Acc: Val_Loss: Val_Acc:

@@ -34,5 +34,36 @@ score = model.evaluate(test_images, test_class)
 
 # model.save('model_try2.h5')
 print(score)
-
 utils.plot_losses(history.losses)
+
+print("Now testing on the complex model")
+# now repeat for a second model
+history2 = utils.LossHistory()
+print("History List created")
+
+model2 = models.model4()
+print("Model compiled, training beginning")
+# train!!!
+model2.fit(train_images, train_class, epochs=10, batch_size=256, callbacks=[history], 
+    validation_data=(test_images, test_class), verbose=1)
+print("Training over, evaluation beginning")
+score2 = model2.evaluate(test_images, test_class)
+
+print(score2)
+utils.plot_losses(history2.losses)
+
+print("Now testing on the simplest model")
+# now repeat for a third model
+history3 = utils.LossHistory()
+print("History List created")
+
+model3 = models.simplest_model()
+print("Model compiled, training beginning")
+# train!!!
+model3.fit(train_images, train_class, epochs=10, batch_size=256, callbacks=[history], 
+    validation_data=(test_images, test_class), verbose=1)
+print("Training over, evaluation beginning")
+score3 = model3.evaluate(test_images, test_class)
+
+print(score3)
+utils.plot_losses(history3.losses)
