@@ -23,11 +23,11 @@ print("History list created")
 #(X_train_mini_batch, y_train_mini_batch) = mini_batch(X_train, Y_train, 10000, 0)
 #(X_test_mini_batch, y_test_mini_batch) = mini_batch(X_test, Y_test, 5000, 0)
 
-model = models.simpler_model()
+model = models.model2()
 print("Model compiled, training beginning")
 
 # train!!!
-model.fit(train_images, train_class, epochs=10, batch_size=256, callbacks=[history], 
+model.fit(train_images, train_class, epochs=2, batch_size=256, callbacks=[history], 
     validation_data=(test_images, test_class), verbose=1)
 print("Training over, evaluation beginning")
 score = model.evaluate(test_images, test_class)
