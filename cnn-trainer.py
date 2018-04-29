@@ -194,10 +194,10 @@ model = init_model()
 print("Model compiled, training beginning")
 
 # train!!!
-model.fit(train_images, train_class, epochs=20, batch_size=64, callbacks=[history], 
+model.fit(train_images, train_class, epochs=2, batch_size=64, callbacks=[history], 
     validation_data=(test_images, test_class), verbose=1)
 print("Training over, evaluation beginning")
-score = model.evaluate(test_images, test_class, batch_size=16)
+score = model.evaluate(test_images, test_class, batch_size=64)
 
 model.save('model_try1.h5')
 print(score)
