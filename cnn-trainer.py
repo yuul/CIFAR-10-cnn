@@ -2,6 +2,7 @@ print("Starting imports")
 
 import keras
 print("Keras Imported")
+import time
 #from keras.models import Sequential
 #from keras.layers import Dense, Dropout, Flatten, BatchNormalization
 #from keras.layers import Conv2D, MaxPooling2D
@@ -27,8 +28,10 @@ model = models.model3()
 print("Model compiled, training beginning")
 
 # train!!!
+start_time = time.time()
 model.fit(train_images, train_class, epochs=2, batch_size=256, callbacks=[history], 
     validation_data=(test_images, test_class), verbose=1)
+print("--- %s seconds ---" % (time.time() - start_time))    
 print("Training over, evaluation beginning")
 score = model.evaluate(test_images, test_class)
 
@@ -44,8 +47,10 @@ print("History List created")
 model2 = models.model4()
 print("Model compiled, training beginning")
 # train!!!
+start_time2 = time.time()
 model2.fit(train_images, train_class, epochs=10, batch_size=256, callbacks=[history], 
     validation_data=(test_images, test_class), verbose=1)
+print("--- %s seconds ---" % (time.time() - start_time2))
 print("Training over, evaluation beginning")
 score2 = model2.evaluate(test_images, test_class)
 
@@ -60,8 +65,10 @@ print("History List created")
 model3 = models.simplest_model()
 print("Model compiled, training beginning")
 # train!!!
+start_time3 = time.time()
 model3.fit(train_images, train_class, epochs=10, batch_size=256, callbacks=[history], 
     validation_data=(test_images, test_class), verbose=1)
+print("--- %s seconds ---" % (time.time() - start_time3))
 print("Training over, evaluation beginning")
 score3 = model3.evaluate(test_images, test_class)
 
