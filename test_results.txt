@@ -10,9 +10,17 @@ Loss .5654, Acc: 70.63, Val_Loss = .5762, Val_Acc = 69.99
 
 Third Test:
 2 Epochs, BS 256, ADAM
-added layer
-Loss: Acc: Val_Loss: Val_Acc:
+added layer (model2)
+Loss: 1.1278 Acc: 49.9 Val_Loss: 1.0013 Val_Acc: 53.96
 
 Fourth Test:
 2 Epochs, BS 256, RMSProp (w/ default values)
+Loss: 1.2688 Acc:44.94  Val_Loss: 1.1364 Val_Acc: 49.99
+
+Fifth Test:
+2 Epochs, BS 256, ADAM
+change all of the dropout to .5 (model 3)
 Loss: Acc: Val_Loss: Val_Acc:
+
+Sixth Test:
+2 Epochs, BS 256, ADAM

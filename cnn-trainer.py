@@ -23,7 +23,7 @@ print("History list created")
 #(X_train_mini_batch, y_train_mini_batch) = mini_batch(X_train, Y_train, 10000, 0)
 #(X_test_mini_batch, y_test_mini_batch) = mini_batch(X_test, Y_test, 5000, 0)
 
-model = models.simpler_model()
+model = models.model3()
 print("Model compiled, training beginning")
 
 # train!!!
