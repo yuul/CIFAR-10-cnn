@@ -10,12 +10,12 @@ Loss .5654, Acc: 70.63, Val_Loss = .5762, Val_Acc = 69.99 Time: 2848
 
 Third Test:
 2 Epochs, BS 256, ADAM
-added layer (model2)
+added one layer (model2)
 Loss: 1.1278 Acc: 49.9 Val_Loss: 1.0013 Val_Acc: 53.96 Time: 645
 
 Fourth Test:
 2 Epochs, BS 256, RMSProp (w/ default values)
-Loss: 1.2688 Acc:44.94  Val_Loss: 1.1364 Val_Acc: 49.99 Time: 565
+Loss: 1.2688 Acc: 44.94  Val_Loss: 1.1364 Val_Acc: 49.99 Time: 565
 
 Fifth Test:
 2 Epochs, BS 256, RMSProp
@@ -46,3 +46,4 @@ Loss: .6070 Acc: 69.1 Val_Loss: .5756 Val_Acc: 70.41 Time:3466
 Tenth Test:
 2 Epochs, BS 256, ADAM
 with batch norm
+Loss: .9162 Acc: 57.89 Val_Loss: 1.1141 Val_Acc: 54.59 Time: 913s

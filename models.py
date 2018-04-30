@@ -73,6 +73,7 @@ def VGG_model():
     model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
     return model
 
+# this model is the primary model I used and the basis for my other models
 def simpler_model():
     
     model = Sequential()
@@ -96,6 +97,7 @@ def simpler_model():
     model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
     return model
 
+# model with one convolutional layer added
 def model2():
     
     model = Sequential()
@@ -120,6 +122,7 @@ def model2():
     model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
     return model
 
+# model with .5 dropout rates
 def model3():
     
     model = Sequential()
@@ -143,6 +146,7 @@ def model3():
     model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
     return model
 
+# model with two convolutional layers added
 def model4():
     
     model = Sequential()
@@ -171,6 +175,7 @@ def model4():
     model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
     return model
 
+# model with two convolutional layers removed
 def simplest_model():
     
     model = Sequential()
@@ -189,6 +194,7 @@ def simplest_model():
     model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
     return model
 
+# model that uses batchnorm on every step
 def batchnorm_model():
     
     model = Sequential()
